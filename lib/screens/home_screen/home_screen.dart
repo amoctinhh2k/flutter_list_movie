@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Center(
           child: Text(
             "Ectrizz",
-            style: TextStyle(color: Colors.white, fontSize: 35),
+            style: TextStyle(color: Colors.white, fontSize: 20),
           ),
         ),
       ),
@@ -59,18 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
             animationCurve: Curves.easeInOutCirc,
             children: <Widget>[
               Container(
-                decoration: BoxDecoration(
-                    color: Colors.redAccent, shape: BoxShape.circle),
-                child: RawMaterialButton(
-                  onPressed: () {
-                    _onTapExit(context);
-                  },
-                  shape: CircleBorder(),
-                  padding: const EdgeInsets.all(24.0),
-                  child: Icon(Icons.exit_to_app, color: Colors.white),
-                ),
-              ),
-              Container(
                 // color: Colors.blue,
                 decoration:
                     BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
@@ -82,6 +70,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   shape: CircleBorder(),
                   padding: const EdgeInsets.all(24.0),
                   child: Icon(Icons.home, color: Colors.white),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.redAccent, shape: BoxShape.circle),
+                child: RawMaterialButton(
+                  onPressed: () {
+                    _onTapExit(context);
+                  },
+                  shape: CircleBorder(),
+                  padding: const EdgeInsets.all(24.0),
+                  child: Icon(Icons.exit_to_app, color: Colors.white),
                 ),
               ),
               Container(
