@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:movieapp2/model/cast_response.dart';
-import 'package:movieapp2/model/genre_response.dart';
-import 'package:movieapp2/model/movie_detail_response.dart';
-import 'package:movieapp2/model/movie_response.dart';
-import 'package:movieapp2/model/person_response.dart';
-import 'package:movieapp2/model/video_response.dart';
+import 'package:flutter_list_movie/model/cast_response.dart';
+import 'package:flutter_list_movie/model/genre_response.dart';
+import 'package:flutter_list_movie/model/movie_detail_response.dart';
+import 'package:flutter_list_movie/model/movie_response.dart';
+import 'package:flutter_list_movie/model/person_response.dart';
+import 'package:flutter_list_movie/model/video_response.dart';
 
 class MovieRepository {
   final String apiKey = "8a1227b5735a7322c4a43a461953d4ff";
@@ -26,7 +26,8 @@ class MovieRepository {
   Future<MovieResponse> getMovies(int page) async {
     var params = {"api_key": apiKey, "language": "vi-vn", "page": page};
     try {
-      Response response = await Dio().get(getMoviesApi, queryParameters: params);
+      Response response =
+          await Dio().get(getMoviesApi, queryParameters: params);
       print("responseresponseresponse : " + response.data.toString());
       return MovieResponse.fromJson(response.data);
     } catch (error, stacktrace) {
@@ -122,7 +123,8 @@ class MovieRepository {
       "with_genres": id
     };
     try {
-      Response response = await Dio().get(getMoviesUrl, queryParameters: params);
+      Response response =
+          await Dio().get(getMoviesUrl, queryParameters: params);
       return MovieResponse.fromJson(response.data);
     } catch (error, stacktrace) {
       return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
@@ -144,8 +146,8 @@ class MovieRepository {
   Future<VideoResponse> getMovieVideos(int id) async {
     var params = {"api_key": apiKey, "language": "vi-vn"};
     try {
-      Response response = await Dio().get(movieUrl + "/$id" + "/videos",
-          queryParameters: params);
+      Response response = await Dio()
+          .get(movieUrl + "/$id" + "/videos", queryParameters: params);
       print("Video ... : " + response.data.toString());
       return VideoResponse.fromJson(response.data);
     } catch (error, stacktrace) {
@@ -156,8 +158,8 @@ class MovieRepository {
   Future<MovieResponse> getSimilarMovies(int id) async {
     var params = {"api_key": apiKey, "language": "vi-vn"};
     try {
-      Response response = await Dio().get(movieUrl + "/$id" + "/similar",
-          queryParameters: params);
+      Response response = await Dio()
+          .get(movieUrl + "/$id" + "/similar", queryParameters: params);
       return MovieResponse.fromJson(response.data);
     } catch (error, stacktrace) {
       return MovieResponse.withError("Error: $error, StackTrace: $stacktrace");
@@ -167,8 +169,8 @@ class MovieRepository {
   Future<CastResponse> getCasts(int id) async {
     var params = {"api_key": apiKey, "language": "vi-vn"};
     try {
-      Response response = await Dio().get(movieUrl + "/$id" + "/credits",
-          queryParameters: params);
+      Response response = await Dio()
+          .get(movieUrl + "/$id" + "/credits", queryParameters: params);
       return CastResponse.fromJson(response.data);
     } catch (error, stacktrace) {
       return CastResponse.withError("Error: $error, StackTrace: $stacktrace");

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_list_movie/widgets/login_widget.dart';
 import 'package:lottie/lottie.dart';
-import 'package:movieapp2/widgets/login_widget.dart';
 import 'package:video_player/video_player.dart';
 
 void main() => runApp(BackgroundVideo());
@@ -16,7 +16,8 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network("https://amt2020.000webhostapp.com/mp4/ironman.mp4")
+    _controller = VideoPlayerController.network(
+        "https://amt2020.000webhostapp.com/mp4/ironman.mp4")
       ..initialize().then((_) {
         _controller.play();
         _controller.setLooping(true);
@@ -61,7 +62,10 @@ class LoginWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          child: Lottie.network('https://assets2.lottiefiles.com/packages/lf20_96cnyxkh.json', width: 100, height: 100),
+          child: Lottie.network(
+              'https://assets2.lottiefiles.com/packages/lf20_96cnyxkh.json',
+              width: 100,
+              height: 100),
         ),
         SizedBox(
           height: 20.0,

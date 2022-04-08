@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp2/model/movie.dart';
+import 'package:flutter_list_movie/model/movie.dart';
 
 class PostListItem extends StatelessWidget {
   const PostListItem({Key? key, required this.movie}) : super(key: key);

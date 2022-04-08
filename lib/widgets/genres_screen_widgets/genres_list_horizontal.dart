@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
+import 'package:flutter_list_movie/model/genre.dart';
+import 'package:flutter_list_movie/repositories/movie_repository.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:movieapp2/bloc/theme_bloc/theme_controller.dart';
-import 'package:movieapp2/model/genre.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:video_player/video_player.dart';
 
@@ -23,13 +23,15 @@ class GenresListHorizontal extends StatefulWidget {
   @override
   State<GenresListHorizontal> createState() => _GenresListHorizontalState();
 }
-late VideoPlayerController _controller;
-class _GenresListHorizontalState extends State<GenresListHorizontal> {
 
+late VideoPlayerController _controller;
+
+class _GenresListHorizontalState extends State<GenresListHorizontal> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network("https://amt2020.000webhostapp.com/intro/introLogo.mp4")
+    _controller = VideoPlayerController.network(
+        "https://amt2020.000webhostapp.com/intro/introLogo.mp4")
       ..initialize().then((_) {
         _controller.play();
         _controller.setLooping(true);
@@ -64,8 +66,7 @@ class _GenresListHorizontalState extends State<GenresListHorizontal> {
               crossAxisSpacing: 4.0,
               mainAxisSpacing: 8.0,
               children: List.generate(widget.genres.length, (index) {
-                return
-                  Padding(
+                return Padding(
                   padding:
                       const EdgeInsets.only(bottom: 10.0, left: 8.0, top: 15.0),
                   child: GestureDetector(
@@ -80,11 +81,12 @@ class _GenresListHorizontalState extends State<GenresListHorizontal> {
                         ),
                       );
                     },
-                    child:
-                    Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(height: 30,),
+                        SizedBox(
+                          height: 30,
+                        ),
                         Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50.0)),
@@ -113,9 +115,11 @@ class _GenresListHorizontalState extends State<GenresListHorizontal> {
                                       child: Container(
                                         padding: const EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(30.0)),
-                                            color: Colors.white.withOpacity(0.1)),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(30.0)),
+                                            color:
+                                                Colors.white.withOpacity(0.1)),
                                         child: Text(
                                           widget.genres[index].name,
                                           maxLines: 2,

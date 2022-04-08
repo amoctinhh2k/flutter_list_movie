@@ -1,12 +1,12 @@
+import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
+import 'package:flutter_list_movie/model/movie.dart';
+import 'package:flutter_list_movie/repositories/movie_repository.dart';
+import 'package:flutter_list_movie/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:movieapp2/bloc/theme_bloc/theme_controller.dart';
-import 'package:movieapp2/model/movie.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
-import 'package:movieapp2/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 
 class MoviesListHorizontal extends StatefulWidget {
   const MoviesListHorizontal(
@@ -83,7 +83,8 @@ class _MoviesListHorizontalState extends State<MoviesListHorizontal> {
                                               placeholder: kTransparentImage,
                                               image:
                                                   "https://image.tmdb.org/t/p/w300/" +
-                                                      widget.movies[index].poster),
+                                                      widget.movies[index]
+                                                          .poster),
                                         ),
                                       ),
                                     ],
@@ -124,21 +125,25 @@ class _MoviesListHorizontalState extends State<MoviesListHorizontal> {
                                                 children: [
                                                   Container(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(
+                                                            8.0),
                                                     decoration: BoxDecoration(
                                                         borderRadius:
-                                                            const BorderRadius.all(
+                                                            const BorderRadius
+                                                                    .all(
                                                                 Radius.circular(
                                                                     30.0)),
                                                         color: Colors.white
                                                             .withOpacity(0.1)),
                                                     child: Text(
-                                                      widget.movies[index].title,
+                                                      widget
+                                                          .movies[index].title,
                                                       maxLines: 2,
                                                       style: const TextStyle(
                                                           height: 1.4,
                                                           color: Colors.white,
-                                                          fontWeight: FontWeight.bold,
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                           fontSize: 12.0),
                                                     ),
                                                   ),

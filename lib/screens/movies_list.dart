@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movieapp2/bloc/all_movies_bloc/all_movies_bloc.dart';
-import 'package:movieapp2/widgets/bottom_loader.dart';
-import 'package:movieapp2/widgets/list_item.dart';
+import 'package:flutter_list_movie/bloc/all_movies_bloc/all_movies_bloc.dart';
+import 'package:flutter_list_movie/widgets/bottom_loader.dart';
+import 'package:flutter_list_movie/widgets/list_item.dart';
 
 class MoviesList extends StatefulWidget {
   const MoviesList({Key? key}) : super(key: key);

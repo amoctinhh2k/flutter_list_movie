@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movieapp2/bloc/theme_bloc/theme_controller.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
-import 'package:movieapp2/style/custom_theme.dart';
 
+import 'bloc/theme_bloc/theme_controller.dart';
+import 'repositories/movie_repository.dart';
 import 'screens/main_screen.dart';
+import 'style/custom_theme.dart';
 
 /// The Widget that configures your application.
 class App extends StatelessWidget {

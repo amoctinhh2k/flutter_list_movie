@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_list_movie/bloc/bottom_navbar_bloc.dart';
+import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
+import 'package:flutter_list_movie/repositories/movie_repository.dart';
+import 'package:flutter_list_movie/widgets/genres_screen_widgets/genres_widgets/genres_widget.dart';
+import 'package:flutter_list_movie/widgets/search_screen_widgets/search_list/search_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:movieapp2/bloc/bottom_navbar_bloc.dart';
-import 'package:movieapp2/bloc/theme_bloc/theme_controller.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
-import 'package:movieapp2/widgets/genres_screen_widgets/genres_widgets/genres_widget.dart';
-import 'package:movieapp2/widgets/search_screen_widgets/search_list/search_widget.dart';
 
 import 'home_screen/home_screen.dart';
 import 'login.dart';
@@ -70,12 +69,13 @@ class _MainScreenState extends State<MainScreen> {
                       movieRepository: widget.movieRepository,
                       themeController: widget.themeController);
                 case NavBarItem.search:
-                  return Get.put(SearchWidget(
-                      movieRepository: widget.movieRepository,
-                      themeController: widget.themeController));
-                    SearchWidget(
-                      movieRepository: widget.movieRepository,
-                      themeController: widget.themeController);
+                  return
+                      // Get.put(SearchWidget(
+                      //   movieRepository: widget.movieRepository,
+                      //   themeController: widget.themeController));
+                      SearchWidget(
+                          movieRepository: widget.movieRepository,
+                          themeController: widget.themeController);
                 // Container();
                 case NavBarItem.profile:
                   return BackgroundVideo();

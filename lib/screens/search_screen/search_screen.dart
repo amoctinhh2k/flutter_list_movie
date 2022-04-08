@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movieapp2/bloc/theme_bloc/theme_controller.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
-import 'package:movieapp2/widgets/home_screen_widgets/popular_movies_widgets/popular_movies_list.dart';
+import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
+import 'package:flutter_list_movie/repositories/movie_repository.dart';
+import 'package:flutter_list_movie/widgets/home_screen_widgets/popular_movies_widgets/popular_movies_list.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen(

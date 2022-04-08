@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movieapp2/model/genre.dart';
-import 'package:movieapp2/model/movie.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
+import 'package:flutter_list_movie/model/genre.dart';
+import 'package:flutter_list_movie/model/movie.dart';
+import 'package:flutter_list_movie/repositories/movie_repository.dart';
 
 part 'genres_movie_state.dart';
 

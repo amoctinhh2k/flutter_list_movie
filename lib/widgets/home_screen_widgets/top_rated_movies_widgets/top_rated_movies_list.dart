@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
+import 'package:flutter_list_movie/model/movie.dart';
+import 'package:flutter_list_movie/repositories/movie_repository.dart';
+import 'package:flutter_list_movie/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:movieapp2/bloc/theme_bloc/theme_controller.dart';
-import 'package:movieapp2/model/movie.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
-import 'package:movieapp2/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:transparent_image/transparent_image.dart';
 

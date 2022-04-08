@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movieapp2/bloc/genres_by_movie_bloc/genres_movie_cubit.dart';
-import 'package:movieapp2/bloc/theme_bloc/theme_controller.dart';
-import 'package:movieapp2/model/genre.dart';
-import 'package:movieapp2/repositories/movie_repository.dart';
-import 'package:movieapp2/widgets/home_screen_widgets/movie_widgets_loader.dart';
-import 'package:movieapp2/widgets/home_screen_widgets/movies_list_horizontal.dart';
+import 'package:flutter_list_movie/bloc/genres_by_movie_bloc/genres_movie_cubit.dart';
+import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
+import 'package:flutter_list_movie/model/genre.dart';
+import 'package:flutter_list_movie/repositories/movie_repository.dart';
+import 'package:flutter_list_movie/widgets/home_screen_widgets/movie_widgets_loader.dart';
+import 'package:flutter_list_movie/widgets/home_screen_widgets/movies_list_horizontal.dart';
 
 class GenreMovieList extends StatelessWidget {
   const GenreMovieList(

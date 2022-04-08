@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movieapp2/bloc/similar_movies_bloc/similar_movies_cubit.dart';
-import 'package:movieapp2/widgets/home_screen_widgets/movies_list_horizontal.dart';
+import 'package:flutter_list_movie/bloc/similar_movies_bloc/similar_movies_cubit.dart';
+import 'package:flutter_list_movie/widgets/home_screen_widgets/movies_list_horizontal.dart';
 
 import '../../bloc/theme_bloc/theme_controller.dart';
 import '../../repositories/movie_repository.dart';
