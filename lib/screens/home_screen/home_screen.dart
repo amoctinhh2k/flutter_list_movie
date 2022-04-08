@@ -37,14 +37,12 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(color: Colors.white, fontSize: 35),
           ),
         ),
-        actions: [],
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 30),
+        padding: const EdgeInsets.only(bottom: 40),
         child: Builder(
           builder: (context) => FabCircularMenu(
             key: fabKey,
-            // Cannot be `Alignment.center`
             alignment: Alignment.bottomRight,
             ringColor: Colors.white.withAlpha(25),
             ringDiameter: 300.0,
@@ -56,37 +54,48 @@ class _HomeScreenState extends State<HomeScreen> {
             fabOpenIcon: const Icon(Icons.menu, color: Colors.green),
             fabCloseIcon: const Icon(Icons.close, color: Colors.green),
             fabMargin: const EdgeInsets.all(16.0),
+            fabOpenColor: Colors.white,
             animationDuration: const Duration(milliseconds: 800),
             animationCurve: Curves.easeInOutCirc,
-            // onDisplayChange: (isOpen) {
-            //   _showSnackBar(
-            //       context, "The menu is ${isOpen ? "open" : "closed"}");
-            // },
             children: <Widget>[
-              RawMaterialButton(
-                onPressed: () {
-                  _onTapExit(context);
-                },
-                shape: CircleBorder(),
-                padding: const EdgeInsets.all(24.0),
-                child: Icon(Icons.exit_to_app, color: Colors.redAccent),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.redAccent, shape: BoxShape.circle),
+                child: RawMaterialButton(
+                  onPressed: () {
+                    _onTapExit(context);
+                  },
+                  shape: CircleBorder(),
+                  padding: const EdgeInsets.all(24.0),
+                  child: Icon(Icons.exit_to_app, color: Colors.white),
+                ),
               ),
-              MaterialButton(
-                onPressed: () {
-                  fabKey.currentState?.close();
-                },
-                shape: CircleBorder(),
-                padding: const EdgeInsets.all(24.0),
-                child: Icon(Icons.home, color: Colors.blue),
+              Container(
+                // color: Colors.blue,
+                decoration:
+                    BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+                // decoration: ,
+                child: MaterialButton(
+                  onPressed: () {
+                    fabKey.currentState?.close();
+                  },
+                  shape: CircleBorder(),
+                  padding: const EdgeInsets.all(24.0),
+                  child: Icon(Icons.home, color: Colors.white),
+                ),
               ),
-              RawMaterialButton(
-                onPressed: () {
-                  // _showSnackBar(context, "Đóng menu");
-                  fabKey.currentState?.close();
-                },
-                shape: CircleBorder(),
-                padding: const EdgeInsets.all(24.0),
-                child: Icon(Icons.close, color: Colors.grey),
+              Container(
+                decoration:
+                    BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+                child: RawMaterialButton(
+                  onPressed: () {
+                    // _showSnackBar(context, "Đóng menu");
+                    fabKey.currentState?.close();
+                  },
+                  shape: CircleBorder(),
+                  padding: const EdgeInsets.all(10),
+                  child: Icon(Icons.transit_enterexit, color: Colors.white),
+                ),
               )
             ],
           ),
