@@ -12,17 +12,25 @@ class BackgroundVideo extends StatefulWidget {
 
 class _BackgroundVideoState extends State<BackgroundVideo> {
   late VideoPlayerController _controller;
-
+  late ImageCache img;
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        "https://amt2020.000webhostapp.com/mp4/ironman.mp4")
-      ..initialize().then((_) {
-        _controller.play();
-        _controller.setLooping(true);
-        setState(() {});
-      });
+    _controller =
+        // VideoPlayerController.network(
+        //     "https://amt2020.000webhostapp.com/mp4/ironman.mp4")
+        VideoPlayerController.asset("assets/intro/ironman.mp4")
+          ..initialize().then((_) {
+            _controller.play();
+            _controller.setLooping(true);
+            setState(() {});
+          });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -47,12 +55,6 @@ class _BackgroundVideoState extends State<BackgroundVideo> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
 }
 
 class LoginWidget extends StatelessWidget {
@@ -62,12 +64,13 @@ class LoginWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Container(
-          child: Lottie.network(
-              'https://assets2.lottiefiles.com/packages/lf20_96cnyxkh.json',
+          child: Lottie.asset(
+              // 'https://assets2.lottiefiles.com/packages/lf20_96cnyxkh.json',
+              "assets/img/login.json",
               width: 100,
               height: 100),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20.0,
         ),
         Widget_Login(),

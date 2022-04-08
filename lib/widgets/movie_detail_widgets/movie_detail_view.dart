@@ -65,7 +65,7 @@ class _DetailViewState extends State<DetailView> {
 
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 700), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         outputDate =
             outputFormat.format(inputFormat.parse(state.movie.releaseDate));

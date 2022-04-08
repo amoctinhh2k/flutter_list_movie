@@ -23,6 +23,9 @@ class MovieRepository {
   var getPersonsUrl = "$mainUrl/trending/person/week";
   var movieUrl = "$mainUrl/movie";
 
+  Map<String, dynamic> getParams([int? page]) =>
+      {"api_key": apiKey, "language": "vi-vn", if (page != null) "page": page};
+
   Future<MovieResponse> getMovies(int page) async {
     var params = {"api_key": apiKey, "language": "vi-vn", "page": page};
     try {
@@ -116,12 +119,14 @@ class MovieRepository {
   }
 
   Future<MovieResponse> getMovieByGenre(int id) async {
-    var params = {
-      "api_key": apiKey,
-      "language": "vi-vn",
-      "page": 1,
-      "with_genres": id
-    };
+    // var params = {
+    //   "api_key": apiKey,
+    //   "language": "vi-vn",
+    //   "page": 1,
+    //   "with_genres": id
+    // };
+
+    var params = {...getParams(), "with_genres": id};
     try {
       Response response =
           await Dio().get(getMoviesUrl, queryParameters: params);

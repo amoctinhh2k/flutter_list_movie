@@ -5,6 +5,7 @@ import 'package:flutter_list_movie/model/movie.dart';
 import 'package:flutter_list_movie/repositories/movie_repository.dart';
 import 'package:flutter_list_movie/screens/movie_detail_screen/movie_detail_screen.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -25,21 +26,37 @@ class MoviesListHorizontal extends StatefulWidget {
 }
 
 class _MoviesListHorizontalState extends State<MoviesListHorizontal> {
+  String? outputDate = "";
+  var state;
+  var inputFormat = DateFormat('yyyy-MM-dd');
+  var outputFormat = DateFormat('dd-MM-yyyy');
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 700), () {
+      setState(() {
+        outputDate =
+            outputFormat.format(inputFormat.parse(state.movie.releaseDate));
+        print("kkkkk0" + outputDate!);
+      });
+    });
+  }
+
+  ScrollController _rrectController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    ScrollController _rrectController = ScrollController();
     return SizedBox(
-        height: 500,
+        height: 1000,
         child: DraggableScrollbar.rrect(
           controller: _rrectController,
-          backgroundColor: Colors.green,
           child: ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: widget.movies.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding:
-                      const EdgeInsets.only(bottom: 10.0, left: 8.0, top: 5.0),
+                  padding: const EdgeInsets.only(
+                      bottom: 5.0, left: 30.0, top: 5.0, right: 30.0),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -54,7 +71,7 @@ class _MoviesListHorizontalState extends State<MoviesListHorizontal> {
                     },
                     child: ListTile(
                       title: Container(
-                        height: 130,
+                        height: 80,
                         decoration: BoxDecoration(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
@@ -63,7 +80,7 @@ class _MoviesListHorizontalState extends State<MoviesListHorizontal> {
                         child: Row(
                           children: [
                             Expanded(
-                              flex: 4,
+                              flex: 2,
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
@@ -93,7 +110,7 @@ class _MoviesListHorizontalState extends State<MoviesListHorizontal> {
                               ),
                             ),
                             Expanded(
-                              flex: 6,
+                              flex: 8,
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50.0)),
@@ -113,44 +130,74 @@ class _MoviesListHorizontalState extends State<MoviesListHorizontal> {
                                         ),
                                       ),
                                     ),
-                                    Center(
+                                    Expanded(
                                       child: SizedBox(
-                                        height: 40.0,
+                                        height: 100.0,
                                         child: Center(
-                                          child: Container(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 5.0),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                    .all(
-                                                                Radius.circular(
-                                                                    30.0)),
-                                                        color: Colors.white
-                                                            .withOpacity(0.1)),
-                                                    child: Text(
-                                                      widget
-                                                          .movies[index].title,
-                                                      maxLines: 2,
-                                                      style: const TextStyle(
-                                                          height: 1.4,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 12.0),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(top: 15),
+                                            child: Container(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 5.0),
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                      .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          30.0)),
+                                                          color: Colors.white
+                                                              .withOpacity(
+                                                                  0.1)),
+                                                      child: Expanded(
+                                                        child: Center(
+                                                          child: Text(
+                                                            widget.movies[index]
+                                                                .title,
+                                                            maxLines: 2,
+                                                            style: const TextStyle(
+                                                                height: 1.4,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 12.0),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
+                                        ),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: Text(
+                                          outputFormat.format(
+                                            inputFormat.parse(widget
+                                                .movies[index].releaseDate),
+                                          ),
+                                          // widget.movies[index].releaseDate,
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                              height: 1.4,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12.0),
                                         ),
                                       ),
                                     ),

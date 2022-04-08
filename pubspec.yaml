@@ -63,7 +63,7 @@ dependencies:
   video_player:
   flutter_form_builder:
   draggable_scrollbar:
-
+  cached_network_image:
 
 
 dev_dependencies:

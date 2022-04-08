@@ -24,7 +24,7 @@ class MoviesGridListHorizontal extends StatelessWidget {
     return SizedBox(
         height: 1000.0,
         child: GridView.count(
-            crossAxisCount: 3,
+            crossAxisCount: 2,
             crossAxisSpacing: 4.0,
             mainAxisSpacing: 8.0,
             children: List.generate(movies.length, (index) {
@@ -132,11 +132,13 @@ class MoviesGridListHorizontal extends StatelessWidget {
                                                             color: Colors.white
                                                                 .withOpacity(
                                                                     0.1)),
-                                                        child: Text(
-                                                          movies[index].title,
-                                                          maxLines: 2,
-                                                          style:
-                                                              const TextStyle(
+                                                        child: Expanded(
+                                                          child: Center(
+                                                            child: Text(
+                                                              movies[index]
+                                                                  .title,
+                                                              maxLines: 2,
+                                                              style: const TextStyle(
                                                                   height: 1.4,
                                                                   color: Colors
                                                                       .white,
@@ -145,6 +147,8 @@ class MoviesGridListHorizontal extends StatelessWidget {
                                                                           .bold,
                                                                   fontSize:
                                                                       9.0),
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),

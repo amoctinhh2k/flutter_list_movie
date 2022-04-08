@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_list_movie/helpers.dart';
 
 import 'rounded_input_field.dart';
 import 'rounded_password_field.dart';
@@ -13,7 +14,7 @@ class Widget_Login extends StatelessWidget {
   final hotenController = TextEditingController();
 
   // Widget_Login([this.user]);
-
+  var isOnline = true;
   final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -27,23 +28,37 @@ class Widget_Login extends StatelessWidget {
             hintText: "Tài khoản",
             onChanged: (value) {},
           ),
-          PasswordField(
+          const PasswordField(
               // onChanged: (value) {
               //   passnew = value;
               //   // (context as Element).markNeedsBuild(); // setState
               // },
               ),
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           Align(
             alignment: Alignment.center,
             child: RaisedButton(
               onPressed: () async {
-                Navigator.of(context, rootNavigator: true).pop('dialog');
-                // model.getDataSearch(meta.docs[0], context);
+                // Navigator.of(context, rootNavigator: true).pop('dialog');
+
+                isOnline = await verifyOnline();
+                if (isOnline) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                    "Không có kết nối Internet!",
+                    style: TextStyle(color: Colors.red),
+                  )));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                    "Hiện tại có kết nối Internet!",
+                    style: TextStyle(color: Colors.green),
+                  )));
+                }
               },
-              child: Text(
+              child: const Text(
                 'ĐĂNG NHẬP',
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

@@ -1,5 +1,6 @@
 // import 'dart:html';
 
+import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
 import 'package:flutter_list_movie/repositories/movie_repository.dart';
@@ -21,28 +22,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var isOnline = false;
+  ScrollController _rrectController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    // isOnline =  verifyOnline() as bool;
     return Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text(
-              "Ectrizz",
-              style: TextStyle(color: Colors.white, fontSize: 25),
-            ),
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            "Ectrizz",
+            style: TextStyle(color: Colors.white, fontSize: 25),
           ),
         ),
-        body:
-
-            // if (!isOnline) {
-            //   FrappeAlert.errorAlert(
-            //     title: "Không có kết nối Internet",
-            //     subtitle: 'Vui lòng kết nối !',
-            //     context: context,
-            //   );
-
-            ListView(
+      ),
+      body: DraggableScrollbar.rrect(
+        controller: _rrectController,
+        backgroundColor: Colors.green,
+        child: ListView(
           padding: EdgeInsets.zero,
           children: [
             // UpComingWidget(
@@ -65,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 )),
             SizedBox(
-              height: 220,
+              height: 300,
               child: NowPlayingWidget(
                   movieRepository: widget.movieRepository,
                   themeController: widget.themeController),
@@ -80,6 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 movieRepository: widget.movieRepository,
                 themeController: widget.themeController),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
