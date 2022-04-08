@@ -44,7 +44,7 @@ class Widget_Login extends StatelessWidget {
                 // Navigator.of(context, rootNavigator: true).pop('dialog');
 
                 isOnline = await verifyOnline();
-                if (isOnline) {
+                if (!isOnline) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text(
                     "Không có kết nối Internet!",

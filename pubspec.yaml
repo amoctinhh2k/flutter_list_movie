@@ -52,7 +52,7 @@ dependencies:
   side_navigation:
   lottie:
   flutter_typeahead:
-
+  fab_circular_menu:
   flutter_slider_drawer:
 
   flutter_datetime_picker:

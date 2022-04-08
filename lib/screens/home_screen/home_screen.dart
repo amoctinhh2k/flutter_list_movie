@@ -1,6 +1,9 @@
 // import 'dart:html';
 
+import 'dart:io';
+
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
+import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_list_movie/bloc/theme_bloc/theme_controller.dart';
 import 'package:flutter_list_movie/repositories/movie_repository.dart';
@@ -21,6 +24,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
   var isOnline = false;
   ScrollController _rrectController = ScrollController();
   @override
@@ -30,7 +34,61 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Center(
           child: Text(
             "Ectrizz",
-            style: TextStyle(color: Colors.white, fontSize: 25),
+            style: TextStyle(color: Colors.white, fontSize: 35),
+          ),
+        ),
+        actions: [],
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: Builder(
+          builder: (context) => FabCircularMenu(
+            key: fabKey,
+            // Cannot be `Alignment.center`
+            alignment: Alignment.bottomRight,
+            ringColor: Colors.white.withAlpha(25),
+            ringDiameter: 300.0,
+            ringWidth: 100.0,
+            fabSize: 32.0,
+            fabElevation: 8.0,
+            fabIconBorder: CircleBorder(),
+            fabColor: Colors.white,
+            fabOpenIcon: const Icon(Icons.menu, color: Colors.green),
+            fabCloseIcon: const Icon(Icons.close, color: Colors.green),
+            fabMargin: const EdgeInsets.all(16.0),
+            animationDuration: const Duration(milliseconds: 800),
+            animationCurve: Curves.easeInOutCirc,
+            // onDisplayChange: (isOpen) {
+            //   _showSnackBar(
+            //       context, "The menu is ${isOpen ? "open" : "closed"}");
+            // },
+            children: <Widget>[
+              RawMaterialButton(
+                onPressed: () {
+                  _onTapExit(context);
+                },
+                shape: CircleBorder(),
+                padding: const EdgeInsets.all(24.0),
+                child: Icon(Icons.exit_to_app, color: Colors.redAccent),
+              ),
+              MaterialButton(
+                onPressed: () {
+                  fabKey.currentState?.close();
+                },
+                shape: CircleBorder(),
+                padding: const EdgeInsets.all(24.0),
+                child: Icon(Icons.home, color: Colors.blue),
+              ),
+              RawMaterialButton(
+                onPressed: () {
+                  // _showSnackBar(context, "Đóng menu");
+                  fabKey.currentState?.close();
+                },
+                shape: CircleBorder(),
+                padding: const EdgeInsets.all(24.0),
+                child: Icon(Icons.close, color: Colors.grey),
+              )
+            ],
           ),
         ),
       ),
@@ -45,20 +103,24 @@ class _HomeScreenState extends State<HomeScreen> {
             //     themeController: widget.themeController),
             const Padding(
               padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: Text(
-                "TỔNG HỢP PHIM HOT",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              child: Text("TỔNG HỢP PHIM HOT",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    backgroundColor: Colors.white,
+                    color: Colors.black,
+                  )),
             ),
             TopRatedMoviesWidget(
                 movieRepository: widget.movieRepository,
                 themeController: widget.themeController),
             const Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Text(
-                  " PHIM MỚI NHẤT",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
+                child: Text(" PHIM NỔI BẬT",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.white,
+                      color: Colors.black,
+                    ))),
             SizedBox(
               height: 300,
               child: NowPlayingWidget(
@@ -67,10 +129,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const Padding(
                 padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "XEM NGAY !",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
+                child: Text("XEM NGAY !",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.white,
+                      color: Colors.black,
+                    ))),
             PopularMoviesWidget(
                 movieRepository: widget.movieRepository,
                 themeController: widget.themeController),
@@ -78,5 +142,73 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  _onTapExit(
+    BuildContext context,
+  ) async {
+    return AlertDialog(
+        // title: Text("Cập nhật"),
+        content: SingleChildScrollView(
+      child: ListBody(
+        children: <Widget>[
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  height: 60,
+                  child: const Center(
+                    child: Text('Cảnh báo',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.redAccent)),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      border: Border.all(width: 1.0, color: Colors.black12)),
+                ),
+                const Center(
+                  child: Text('Bạn có chắc chắn muốn Thoát !',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueGrey)),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: RaisedButton(
+                        color: Colors.grey,
+                        child: Text('KO'),
+                        onPressed: () {
+                          Navigator.of(context, rootNavigator: true)
+                              .pop('dialog');
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    Expanded(
+                      child: RaisedButton(
+                        color: Colors.green,
+                        child: Text(
+                          'OK',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          exit(0);
+                          // Navigator.pop(context);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ]),
+        ],
+      ),
+    ));
   }
 }

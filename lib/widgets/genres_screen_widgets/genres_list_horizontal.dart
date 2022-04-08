@@ -30,8 +30,9 @@ class _GenresListHorizontalState extends State<GenresListHorizontal> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        "https://amt2020.000webhostapp.com/intro/introLogo.mp4")
+    _controller = VideoPlayerController.asset("assets/intro/introLogo.mp4"
+        // "https://amt2020.000webhostapp.com/intro/introLogo.mp4"
+        )
       ..initialize().then((_) {
         _controller.play();
         _controller.setLooping(true);

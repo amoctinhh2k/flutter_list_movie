@@ -65,10 +65,9 @@ class _SearchListHorizontalState extends State<SearchListHorizontal> {
 
   void initState() {
     super.initState();
-
-    super.initState();
-    _controller = VideoPlayerController.network(
-        "https://amt2020.000webhostapp.com/intro/introhud.mp4")
+    _controller = VideoPlayerController.asset("assets/intro/introhud.mp4"
+        // "https://amt2020.000webhostapp.com/intro/introhud.mp4"
+        )
       ..initialize().then((_) {
         _controller.play();
         _controller.setLooping(true);
